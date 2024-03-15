@@ -13,12 +13,12 @@ async function sendTele(iprdp, address) {
     const hari = new Date();
     const hari_ini = moment(hari).format("DD-MM-YYYY hh:mm:ss");
     const cekWallet = await axios.get(`https://node.wdym.wtf/api/wdym/nodes/${address}/token`);
-    const formattedTotalReward = Number(cekWallet.data.totalReward.toFixed(3));
+    const formattedTotalReward = Number(cekWallet.data.totalReward.toFixed(4));
 
-    const message = `Update ${hari_ini}\nIP RDP : ${iprdp}\nSaldo kamu : ${formattedTotalReward} $WDYM`;
+    const message = `🟢Update ${hari_ini}\nIP RDP : ${iprdp}\nSaldo kamu : ${formattedTotalReward} $WDYM`;
     try {
         const response = await axios.get(`https://api.telegram.org/bot6363994922:AAHeVwWrMEEK95brIY4ZYAVh6TOSdYtXn6A/sendMessage?chat_id=${idTelegram}&text=${encodeURIComponent(message)}`);
-        console.log(`mengirim ke telegram 1 jam sekali...`)
+        console.log(`Update Saldo  ${formattedTotalReward} $WDYM, Mengirim ke telegram 1 jam sekali...`)
     } catch (error) {
         console.log(error);
     }
